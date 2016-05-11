@@ -1,0 +1,5 @@
+<?
+$input=(int)$_GET['input'];
+$age=$input+100;
+echo "This number $age is different than the input number :P";
+?>
