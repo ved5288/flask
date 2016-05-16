@@ -27,7 +27,7 @@ function hash_username()
 		}
 	}
 	var username=document.getElementById("username").value
-	hash_username_request.open("GET","hash_the_string?username="+username,true)
+	hash_username_request.open("GET","username_check?username="+username,true)
 	hash_username_request.send(null)
 };
 

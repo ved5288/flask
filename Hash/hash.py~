@@ -25,7 +25,7 @@ def check_passwords():
 def hash_the_string():
   	string = request.args.get('username')
 	hashed_string=md5.new()
-	hashed_string.update(string)
+	hashed_string.update(username)
 	return jsonify(result=hashed_string.hexdigest())
 
 
