@@ -1,22 +1,84 @@
 #all the imports
-import sqlite3
+import sqlite3, md5
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, jsonify
 from contextlib import closing
+
+# configuration
+DATABASE = 'users.db'
+DEBUG = True
+SECRET_KEY = 'development key'
+USERNAME = 'admin'
+PASSWORD = 'default'
 
 # create our application
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+def connect_db():
+	return sqlite3.connect(app.config['DATABASE'])
+
+@app.before_request
+def before_request():
+	g.db=connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+	db = getattr(g,'db',None)
+ 	if db is not None:
+	  db.close()
+
+
 @app.route('/')
 def home():
 	return render_template('home.html')
 
+@app.route('/password_match')
+def check_passwords():
+  	password = request.args.get('password')
+	confirm_password = request.args.get('confirm_password')
+	if password==confirm_password:
+		password_matching_status=""
+	else: 
+		password_matching_status="Passwords do not match"
+	return jsonify(result=password_matching_status)
 
+@app.route('/username_check')
+def username_availability():
+  	username = request.args.get('username')
+	#cur=g.db.execute("SELECT * FROM registrations WHERE username=?", (username,))
+	#if(cur!=None):
+	#	text="username available"
+	#else:
+	#	text="username exists"
+	hashed_username=md5.new()
+	hashed_username.update(username)
+	return jsonify(result=hashed_username.hexdigest())
 
-@app.route('/ajax')
-def ajax_request():
-	number =request.form['number']
-	return jsonify(number=number) 
+@app.route('/register')
+def register():
+	firstname=request.args.get('firstname')
+	lastname=request.args.get('lastname')
+	username=request.args.get('username')
+	password=request.args.get('password')
+	email=request.args.get('email')
+	password_matching=request.args.get('password_matching')
+	username_result=request.args.get('username_result')
+	print password_matching
+	if(password_matching=="Passwords do not match") or (username_result=="username exists"):
+		return jsonify(result="There is some error.Please re-fill")
+
+	cur=g.db.execute("INSERT INTO registrations (firstname,lastname,username,password,email) VALUES (?,?,?,?,?)",(firstname,lastname,username,password,email))
+	
+	if(cur==None):
+		return jsonify(result="Something's wrong")
+	return jsonify(result="User successfully registered")
+
+def init_db():
+  with closing(connect_db()) as db :
+    with app.open_resource('schema.sql',mode='r') as f:
+      db.cursor().executescript(f.read())
+    db.commit()
+	
 
 if __name__=='__main__':
-	app.run(debug=2)
+	app.run(debug=True)
