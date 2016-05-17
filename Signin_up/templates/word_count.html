@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html>
+<head>
+  <title> Word-count </title>
+  <h1> Find the word-count </h1>
+
+  <script>
+  function find_word_count()
+  {
+	//alert("Hi. You are here")
+	var word_count=new XMLHttpRequest()
+	word_count.onreadystatechange=function()
+	{
+		if(word_count.readyState==4)
+		{
+			if (word_count.status==200)
+			{
+				var number_of_words=JSON.parse(word_count.responseText)
+				document.getElementById("word_count").innerHTML="Word Count : "+number_of_words.result
+			}
+			else
+			{
+				alert("An error has occured")
+			}
+		}
+	}
+	var input_text=document.getElementById("input_text").value
+	var parameters="input_text="+input_text
+	word_count.open("POST","/find_word_count",true)
+	word_count.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	word_count.send(parameters);
+  }
+  </script>
+</head>
+
+<body>
+  <form method="post" action="">
+  Insert Text : 
+  <br/>
+  <textarea id="input_text" name="input_text" rows="10" cols="40" ></textarea>
+  <br/><br/>
+  <input type="button" value="Find word count" onclick="find_word_count()"/>  
+  <br/><br/>
+  <div id="word_count" >  </div><br />
+  </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<title> Sign-in/up </title>
+<div class=page>
+  <h1>Web-Page</h1>
+  <div class=metanav>
+    <a href="/register">register</a>
+ <!-- {% if not session.logged_in%} -->
+    <a href="/login">log in</a>
+ <!-- {% else %}
+    <a href="/logout">log out</a> -->
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages()%}
+    <div class=flash>{{message}}</div>
+  {% endfor %}
+  {% for message in get_flashed_messages()%}
+    <div class=flash>{{message}}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>
