@@ -7,5 +7,5 @@
   <p> First Name : {{firstname}}</p>
   <p> Last Name : {{lastname}}</p>
   <p> Bio : {{bio}}</p>
-  <a href="/">Back to Home</a>
+  <a href="/logout">Log Out</a>
 </html>

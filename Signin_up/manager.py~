@@ -75,7 +75,7 @@ def username_availability():
 def logout():
 	session.pop('logged_in',None)
 	session.pop('user',None)
-	return redirect('home.html')
+	return redirect('/')
 
 @app.route('/username_availability_for_login',methods=['GET','POST'])
 def username_availability_for_login():

@@ -65,8 +65,6 @@
 			{
 				var registration_status=JSON.parse(new_registration.responseText)
    				document.getElementById("registration_status").innerHTML=registration_status.result
-				if (registration_status.result=="Successfully registered")
-					window.location='/'
   			}
   			else
   			{

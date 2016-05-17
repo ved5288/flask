@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,render_template,request,session,flash,redirect,abort
+from flask import Flask,jsonify,render_template,request,session,redirect
 import os
 
 # create our application
@@ -133,7 +133,6 @@ def registration():
 				registrations[2].append(username)
 				registrations[3].append(password)
 				registrations[4].append(bio)
-				#flash("User Successfully Registered")
 				return jsonify(result="Successfully registered")
 	return jsonify(result="Wrong Method")	
 	

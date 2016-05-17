@@ -15,7 +15,7 @@
   			}
   			else
   			{
-  	 			alert("An error has occured making the request")
+  	 			alert("An error has occured making the request");
   			}
  		}
 	}
@@ -28,31 +28,31 @@
 
   function login()
   {
-	var login_attempt=new XMLHttpRequest()
+	var login_attempt=new XMLHttpRequest();
 	login_attempt.onreadystatechange=function()
 	{	
  		if (login_attempt.readyState==4)
  		{
   			if (login_attempt.status==200)
 			{
-				var login_status=JSON.parse(login_attempt.responseText)
-   				document.getElementById("login_status").innerHTML=login_status.result
+				var login_status=JSON.parse(login_attempt.responseText);
+   				document.getElementById("login_status").innerHTML=login_status.result;
 				if (login_status.result=="Successfully logged in")
-					alert("I am here")
+					alert("I am here");
 					window.location.href="/profile";
   			}
   			else
   			{
-  	 			alert("An error has occured making the request")
+  	 			alert("An error has occured making the request");
   			}
  		}
 	}
-	var username=document.getElementById("username").value
-	var password=document.getElementById("password").value
-	var parameters="&username="+username+"&password="+password
-	login_attempt.open("POST", "/login_attempt", true)
-	login_attempt.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	login_attempt.send(parameters)
+	var username=document.getElementById("username").value;
+	var password=document.getElementById("password").value;
+	var parameters="&username="+username+"&password="+password;
+	login_attempt.open("POST", "/login_attempt", true);
+	login_attempt.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	login_attempt.send(parameters);
   };
 
   </script>

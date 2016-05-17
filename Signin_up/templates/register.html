@@ -5,83 +5,83 @@
   <script>
   function check_password_matching()
   {
-	var password_matching_request=new XMLHttpRequest()
+	var password_matching_request=new XMLHttpRequest();
 	password_matching_request.onreadystatechange=function()
 	{	
  		if (password_matching_request.readyState==4)
  		{
   			if (password_matching_request.status==200)
 			{
-				var password_matching_result=JSON.parse(password_matching_request.responseText)
-   				document.getElementById("password_matching").innerHTML=password_matching_result.result
+				var password_matching_result=JSON.parse(password_matching_request.responseText);
+   				document.getElementById("password_matching").innerHTML=password_matching_result.result;
   			}
   			else
   			{
-  	 			alert("An error has occured making the request")
+  	 			alert("An error has occured making the request");
   			}
  		}
 	}
-	var password=document.getElementById("password").value
-	var confirm_password=document.getElementById("confirm_password").value
-	var parameters="password="+password+"&confirm_password="+confirm_password
-	password_matching_request.open("POST", "/password_match", true)
-	password_matching_request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	password_matching_request.send(parameters)
+	var password=document.getElementById("password").value;
+	var confirm_password=document.getElementById("confirm_password").value;
+	var parameters="password="+password+"&confirm_password="+confirm_password;
+	password_matching_request.open("POST", "/password_match", true);
+	password_matching_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	password_matching_request.send(parameters);
   };
   
   function check_username()
   {
-	var check_username_request=new XMLHttpRequest()
+	var check_username_request=new XMLHttpRequest();
 	check_username_request.onreadystatechange=function()
 	{	
  		if (check_username_request.readyState==4)
  		{
   			if (check_username_request.status==200)
 			{
-				var check_username_result=JSON.parse(check_username_request.responseText)
-   				document.getElementById("username_availability").innerHTML=check_username_result.result
+				var check_username_result=JSON.parse(check_username_request.responseText);
+   				document.getElementById("username_availability").innerHTML=check_username_result.result;
   			}
   			else
   			{
-  	 			alert("An error has occured making the request")
+  	 			alert("An error has occured making the request");
   			}
  		}
 	}
-	var username=document.getElementById("username").value
-	var parameters="username="+username
-	check_username_request.open("POST", "/username_availability", true)
-	check_username_request.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	check_username_request.send(parameters)
+	var username=document.getElementById("username").value;
+	var parameters="username="+username;
+	check_username_request.open("POST", "/username_availability", true);
+	check_username_request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	check_username_request.send(parameters);
   };
 
   function registration()
   {
-	var new_registration=new XMLHttpRequest()
+	var new_registration=new XMLHttpRequest();
 	new_registration.onreadystatechange=function()
 	{	
  		if (new_registration.readyState==4)
  		{
   			if (new_registration.status==200)
 			{
-				var registration_status=JSON.parse(new_registration.responseText)
-   				document.getElementById("registration_status").innerHTML=registration_status.result
+				var registration_status=JSON.parse(new_registration.responseText);
+   				document.getElementById("registration_status").innerHTML=registration_status.result;
   			}
   			else
   			{
-  	 			alert("An error has occured making the request")
+  	 			alert("An error has occured making the request");
   			}
  		}
 	}
-	var firstname=document.getElementById("firstname").value
-	var lastname=document.getElementById("lastname").value
-	var username=document.getElementById("username").value
-	var password=document.getElementById("password").value
-	var confirm_password=document.getElementById("confirm_password").value
-	var input_text=document.getElementById("bio").value
-	var parameters="firstname="+firstname+"&lastname="+lastname+"&username="+username+"&password="+password+"&confirm_password="+confirm_password+"&input_text="+input_text
-	new_registration.open("POST", "/registration", true)
-	new_registration.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	new_registration.send(parameters)
+	var firstname=document.getElementById("firstname").value;
+	var lastname=document.getElementById("lastname").value;
+	var username=document.getElementById("username").value;
+	var password=document.getElementById("password").value;
+	var confirm_password=document.getElementById("confirm_password").value;
+	var input_text=document.getElementById("bio").value;
+	var parameters="firstname="+firstname+"&lastname="+lastname+"&username="+username+"&password="+password+"&confirm_password="+confirm_password+"&input_text="+input_text;
+	new_registration.open("POST", "/registration", true);
+	new_registration.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	new_registration.send(parameters);
   };
   </script>
   </head>
