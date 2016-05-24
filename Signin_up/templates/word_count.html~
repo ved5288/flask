@@ -27,7 +27,7 @@
 	}
 	var input_text=document.getElementById("input_text").value
 	var parameters=JSON.stringify({input_text:input_text});
-	word_count.open("POST","/api/find_word_count_end",true)
+	word_count.open("POST","/find_word_count_end",true)
 	word_count.setRequestHeader("Content-type","application/json")
 	word_count.send(parameters);
   }

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-  <a href="/home.html">Back to Home</a>
+  <a href="/api">Back to Home</a>
   <script>
   function check_password_matching()
   {
