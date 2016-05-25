@@ -1,9 +1,0 @@
-<!doctype html>
-<title> Sign-in/up </title>
-<div class=page>
-  <h1>Web-Page</h1>
-  <div class=metanav>
-    <a href="/register.html">register</a>
-    <a href="/profile.html">log in</a>
-</div>
-</div>
